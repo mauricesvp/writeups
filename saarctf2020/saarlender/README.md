@@ -36,11 +36,10 @@ for Flag Store 1.
 
 # Flag Store 3
 Something very interesting we noticed when analysing the traffic was a /shell endpoint, which the
-checker was using. Following the /shell?, one was able to executing JavaScript code, which had to be
-encoded in base64. However there quite some limitations, as typical functions like include or system
+checker was using. Following the /shell?, one was able to send base64 encoded JavaScript code, which then got executed. However there were quite some limitations, as typical functions like include or system
 were disabled. We did not manage to craft any payload which would get us additional flags, although
 there was a config file which already hinted that RCE was possible. After the CTF the challenge
-creator should us an example payload, one was able to grep for additional messages (in users/) which were not
+creator showed us an example payload: one was able to grep for additional messages (in the `users` directory) which were not
 obtainable otherwise, which again contained flags.
 
 # Fixes
