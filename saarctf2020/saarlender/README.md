@@ -10,17 +10,21 @@ The backend consisted of many nginx configs, and a custom JS runtime environment
 
 # Flag Store 1
 The first Flag Store was quite basic. Analysing the traffic after the network opened, we quickly
-discovered that the checker created users with the username "<time_stamp_as_int>[:-2]". This was
+discovered that the checker created users with the username scheme <time_stamp_as_int>[:-2]. This was
 quite important as the usernames were not obtainable otherwise. From there we could access the
 messages and events of the users, in which the flags were stored.
 
 This was the first exploit we had running of all services, with a couple of variations as well, as
-there were multiple similar endpoints for the events and messages:
+there were multiple similar endpoints for the events and messages to get flags from:
 
 For example:
-/events/<username>
-/events/raw/<username>
-/events/raw-pub/<username>
+
+    /events/<username>
+    
+    /events/raw/<username>
+    
+    /events/raw-pub/<username>
+   etc.
 
 
 # Flag Store 2
@@ -40,11 +44,12 @@ creator should us an example payload, one was able to grep for additional messag
 obtainable otherwise, which again contained flags.
 
 # Fixes
-We fixed Flag Store 1 and 2 by simply returning nothing for load_events(), which was called for
-/events*.
+We fixed Flag Store 1 and 2 by simply returning nothing for `load_events()`, which was called when accessing
+`/events*`.
+
 Regarding Flag Store 3 we did not patch anything, which lead to roughly two lost flags per
 tick.
 
-# Other interesting observations
-Right in the beginning of the CTF a team member noticed the auth.conf file, which contained hardcoded credentials.
+# Misc
+Right in the beginning of the CTF a team member noticed the `auth.conf` file, which contained hardcoded credentials.
 However we did not find this to be exploitable in any way.
