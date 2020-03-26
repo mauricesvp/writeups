@@ -1,6 +1,6 @@
-# saarlender
+# saarlendar
 
-Saarlender was a web service of the saarCTF 2020.
+Saarlendar was a web service of the saarCTF 2020.
 The user was able to register and login, and create events and messages, both of which could be
 public or private.
 
@@ -43,11 +43,11 @@ creator showed us an example payload: one was able to grep for additional messag
 obtainable otherwise, which again contained flags.
 
 # Fixes
-We fixed Flag Store 1 and 2 by simply returning nothing for `load_events()`, which was called when accessing
-`/events*`.
+We first blocked requests from any User-Agent other than `Saarfari`, as this was the checker User-Agent, although this is very easy to bypass.
 
-Regarding Flag Store 3 we did not patch anything, which lead to roughly two lost flags per
-tick.
+Regarding Flag Store 3 we only patched the `get_events()` to return no events, which did not really fix the vuln.
+
+In general there were a lot of vulns to be exploited, so we definitely did not patch enough, which led to roughly two lost flags per tick
 
 # Misc
 Right in the beginning of the CTF a team member noticed the `auth.conf` file, which contained hardcoded credentials.
