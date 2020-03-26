@@ -52,3 +52,5 @@ tick.
 # Misc
 Right in the beginning of the CTF a team member noticed the `auth.conf` file, which contained hardcoded credentials.
 However we did not find this to be exploitable in any way.
+
+Another sort of fun file was `next_level.py`, which would obfuscate `ngnix.config`.
